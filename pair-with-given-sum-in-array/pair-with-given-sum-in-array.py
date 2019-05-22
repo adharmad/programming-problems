@@ -43,6 +43,20 @@ def findPair2(array, sumToFind):
 
     return (-1, -1)
 
+# Keep a dict of elem -> (sumToFind-elem)
+# If the value of the dict exists as a key then you have found the answer
+def findPair3(array, sumToFind):
+    d = {}
+
+    for elem in array:
+        d[elem] = sumToFind-elem
+
+    for k, v in d.items():
+        if v in d:
+            return (k, v)
+
+    return (-1, -1)
+
 if __name__ == '__main__':
     array = [8, 7, 2, 5, 3, 1]
     sumToFind = 12 
@@ -50,5 +64,8 @@ if __name__ == '__main__':
     #answer = findPair1(array, sumToFind)
     #print(answer)
 
-    answer = findPair2(array, sumToFind)
+    #answer = findPair2(array, sumToFind)
+    #print(answer)
+
+    answer = findPair3(array, sumToFind)
     print(answer)
