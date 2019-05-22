@@ -24,19 +24,31 @@ def findPair1(array, sumToFind):
 # Sort the array and traverse it from beginning and end
 # progressively increasing the begin index and end index until
 # We hit the correct sum
+# Here we cannot return the original indices but can return the
+# numbers that add up to the required sum
 def findPair2(array, sumToFind):
     array.sort()
 
     lo = 0
-    hi = len(array)
+    hi = len(array)-1
     while hi > lo:
-        pass
+
+        currSum = array[lo] + array[hi]
+        if currSum == sumToFind:
+            return (array[lo], array[hi])
+        elif currSum > sumToFind:
+            hi -= 1
+        elif currSum < sumToFind:
+            lo += 1
+
+    return (-1, -1)
 
 if __name__ == '__main__':
     array = [8, 7, 2, 5, 3, 1]
-    sumToFind = 10 
+    sumToFind = 12 
 
     #answer = findPair1(array, sumToFind)
     #print(answer)
 
-    findPair2(array, sumToFind)
+    answer = findPair2(array, sumToFind)
+    print(answer)
